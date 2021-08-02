@@ -5,13 +5,12 @@
   tasks: 
     - name: copy a file to managed and set attributes
       copy:
-        src: /root/text1.txt
-        dest: /home/user1/txt
+        src: /tmp/test1.txt
+        dest: /tmp/
         owner: user1
         group: user1
-        mode: u+rw,g-rw,o-rwx
-        #settype: samba_share_t
-     - name: copy
-       copy:
-         content: " This is a file"
-         dest: /home/user2/newfile.txt
+        mode: 0755
+    - name: copy
+      copy:
+        content: " This is a file"
+        dest: /tmp/test1.txt
