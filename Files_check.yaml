@@ -1,0 +1,19 @@
+---
+- hosts: file_hosts
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: "Find files"
+      find:
+        path: '/test'
+        file_type: any
+      register: Files
+
+    - name: Save output with hostname
+      lineinfile:
+        dest: /tmp/files.output
+        line: "{{ inventory_hostname }}"
+        insertafter: EOF
+      delegate_to: localhost
+      when: Files.matched == 0
