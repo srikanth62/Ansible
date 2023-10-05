@@ -1,0 +1,14 @@
+---
+-  hosts: dockerhosts
+   gather_facts: false
+   become: yes
+   tasks:
+     - name: changing the file
+       lineinfile:
+         path: /etc/test.docker.conf
+         regexp: 'dckr-reg-files.amazonaws.com'
+         line: 'Environment="NO_PROXY=localhost,127.0.0.1,::1,"'
+         state: present
+         backup: yes
+     - debug:
+         msg: "changed s3"
