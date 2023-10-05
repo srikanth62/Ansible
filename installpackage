@@ -1,0 +1,8 @@
+---
+- name: checkpolicy install
+  hosts: hydcheck
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: Install checkpolic package
+    apt: name=checkpolicy state=latest update_cache=true
