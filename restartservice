@@ -1,0 +1,12 @@
+---
+-  hosts: dockerhosts
+   gather_facts: false
+   become: yes
+   tasks:
+     - name: refresh services
+       command: "{{item}}"
+       with_items:
+         - sudo systemctl daemon-reload
+         - sudo systemctl restart docker.service
+     - debug:
+         msg: "restart the deamon && service"
