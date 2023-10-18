@@ -1,0 +1,11 @@
+---
+- hosts: pkghosts
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: "Install multiple packages"
+      apt: name={{ item }} state=latest update_cache=true
+      loop: [libbsd-dev,dos2unix]
+
+    - debug:
+        msg: "installing the packages"
